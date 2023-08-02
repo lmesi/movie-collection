@@ -1,0 +1,10 @@
+.poster-img {
+  height: 250px;
+}
+
+.movies-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+}
