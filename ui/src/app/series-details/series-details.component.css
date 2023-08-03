@@ -1,0 +1,21 @@
+.component-container {
+  display: flex;
+  flex-direction: row;
+  padding: 80px 30px;
+}
+
+.component-container > img {
+  height: 70vh;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  margin-left: 50px;
+  font-size: 25px;
+}
+
+h1 {
+  text-align: center;
+}

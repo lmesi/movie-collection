@@ -1,0 +1,14 @@
+<div *ngIf="series">
+  <h1>{{ series.title }}</h1>
+  <div class="component-container">
+    <img [src]="series.poster" alt="poster" />
+    <div class="details-container">
+      <p>Creator(s): {{ series.directors.join(", ") }}</p>
+      <p>Episodes: {{ series.episodes }}</p>
+      <p>Seasones: {{ series.seasons }}</p>
+      <p>Average play time per episode: {{ series.length }}</p>
+      <p>Played between {{ series.year }}</p>
+      <p>{{ series.watched ? "Already seen" : "Not seen yet" }}</p>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { MediaListComponent } from './mediaList/mediaList.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { SeriesDetailsComponent } from './series-details/series-details.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     TopBarComponent,
     MediaListComponent,
     MovieDetailsComponent,
+    SeriesDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
       { path: 'movies', component: MediaListComponent },
       { path: 'movies/:movieId', component: MovieDetailsComponent },
       { path: 'series', component: MediaListComponent },
+      { path: 'series/:seriesId', component: SeriesDetailsComponent },
     ]),
   ],
   providers: [],
