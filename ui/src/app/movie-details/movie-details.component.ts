@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie, movies } from 'src/assets/movies';
+import { Media, movies } from 'src/assets/movies';
 
 @Component({
-  selector: 'app-media-details',
-  templateUrl: './media-details.component.html',
-  styleUrls: ['./media-details.component.css'],
+  selector: 'app-movie-details',
+  templateUrl: './movie-details.component.html',
+  styleUrls: ['./movie-details.component.css'],
 })
-export class MediaDetailsComponent implements OnInit {
-  movie: Movie | undefined;
+export class MovieDetailsComponent implements OnInit {
+  movie!: Media | undefined;
 
   constructor(private route: ActivatedRoute) {}
 
