@@ -25,6 +25,7 @@ export class CollectionComponent implements OnInit {
       console.log('added');
       this.collectionService.getCollections().subscribe((data) => {
         this.collections = data;
+        this.inputTitle = '';
       });
     });
   }

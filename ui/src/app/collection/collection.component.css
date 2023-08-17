@@ -16,17 +16,20 @@
   width: 215px;
   text-align: center;
   margin: 20px 10px;
-  color: white;
-  text-decoration: none;
-}
-
-.card-container:hover {
-  text-decoration: underline;
 }
 
 .card-container > h3 {
   margin-block-end: 0;
   width: 150px;
+}
+
+.card-container > a {
+  color: white;
+  text-decoration: none;
+}
+
+.card-container > a:hover {
+  text-decoration: underline;
 }
 
 .card-container > button {
