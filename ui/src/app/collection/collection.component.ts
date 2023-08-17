@@ -1,32 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Collection } from '../collection.model';
+import { CollectionService } from '../collection.service';
 
 @Component({
   selector: 'app-collection',
   templateUrl: './collection.component.html',
   styleUrls: ['./collection.component.css'],
 })
-export class CollectionComponent {
-  collections = [
-    { id: 1, title: 'Movies to watch' },
-    { id: 2, title: 'Series to watch' },
-    { id: 3, title: 'Worth to rewatch' },
-    { id: 4, title: 'Do not watch' },
-    { id: 5, title: 'Study' },
-  ];
+export class CollectionComponent implements OnInit {
+  collections!: Collection[];
+
+  constructor(private collectionService: CollectionService) {}
+
+  ngOnInit(): void {
+    this.collectionService.getCollections().subscribe((data) => {
+      this.collections = data;
+    });
+  }
 
   inputTitle: string = '';
 
   addCollection() {
-    this.collections.push({
-      id: this.collections.length + 1,
-      title: this.inputTitle,
+    this.collectionService.postCollection(this.inputTitle).subscribe((data) => {
+      console.log('added');
+      this.collectionService.getCollections().subscribe((data) => {
+        this.collections = data;
+      });
     });
   }
 
   deleteCollection(id: number) {
-    const indexOfCollection = this.collections.findIndex(
-      (collection) => collection.id === id
-    );
-    this.collections.splice(indexOfCollection, 1);
+    this.collectionService.deleteCollection(id).subscribe((data) => {
+      console.log('delete');
+      this.collectionService.getCollections().subscribe((data) => {
+        this.collections = data;
+      });
+    });
   }
 }

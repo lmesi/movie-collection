@@ -16,6 +16,12 @@
   width: 215px;
   text-align: center;
   margin: 20px 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.card-container:hover {
+  text-decoration: underline;
 }
 
 .card-container > h3 {

@@ -4,7 +4,11 @@
   <input type="text" [(ngModel)]="inputTitle" />
 </div>
 <div class="collections-container">
-  <div class="card-container" *ngFor="let collection of collections">
+  <a
+    [routerLink]="['/collections', collection.id]"
+    class="card-container"
+    *ngFor="let collection of collections"
+  >
     <svg
       width="150px"
       height="150px"
@@ -46,5 +50,5 @@
         />
       </svg>
     </button>
-  </div>
+  </a>
 </div>
