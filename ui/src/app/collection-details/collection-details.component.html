@@ -1,0 +1,21 @@
+<div *ngIf="collection">
+  <h1>{{ collection.title }}</h1>
+  <h3>Movies</h3>
+  <div class="media-container">
+    <div *ngFor="let movie of collection.movies">
+      <a [routerLink]="['/movies', movie.id]">
+        <img [src]="movie.posterUrl" class="poster-img" />
+      </a>
+      <h4>{{ movie.title }}</h4>
+    </div>
+  </div>
+  <h3>Series</h3>
+  <div class="media-container">
+    <div *ngFor="let ser of collection.series">
+      <a [routerLink]="['/series', ser.id]">
+        <img [src]="ser.posterUrl" class="poster-img" />
+      </a>
+      <h4>{{ ser.title }}</h4>
+    </div>
+  </div>
+</div>
