@@ -35,23 +35,17 @@
 <div>
   <h3>Movies</h3>
   <div class="poster-img-container">
-    <img
-      *ngFor="let movie of movies"
-      class="poster-img"
-      [src]="movie.poster"
-      alt="Shrek poster"
-    />
+    <a [routerLink]="['/movies', movie.id]" *ngFor="let movie of movies">
+      <img class="poster-img" [src]="movie.posterUrl" alt="Shrek poster" />
+    </a>
   </div>
 </div>
 
 <div>
   <h3>Series</h3>
   <div class="poster-img-container">
-    <img
-      *ngFor="let ser of series"
-      class="poster-img"
-      [src]="ser.poster"
-      alt="Shrek poster"
-    />
+    <a [routerLink]="['/series', ser.id]" *ngFor="let ser of series">
+      <img class="poster-img" [src]="ser.posterUrl" alt="Shrek poster" />
+    </a>
   </div>
 </div>
