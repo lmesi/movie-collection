@@ -1,10 +1,8 @@
-<h1 *ngIf="medias">{{ medias[0].type | titlecase }}</h1>
+<h1 *ngIf="medias">{{ type === "/movies" ? "Movies" : "Series" }}</h1>
 <div class="movies-container">
   <div *ngFor="let media of medias">
-    <a
-      [routerLink]="[media.type === 'movies' ? '/movies' : '/series', media.id]"
-    >
-      <img [src]="media.poster" class="poster-img" />
+    <a [routerLink]="[type, media.id]">
+      <img [src]="media.posterUrl" class="poster-img" />
     </a>
     <h4>{{ media.title }}</h4>
   </div>

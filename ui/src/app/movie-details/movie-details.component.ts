@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Media, movies } from 'src/assets/movies';
+import { Movie } from 'src/app/medias.model';
+import { MediaService } from '../media.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -8,12 +9,17 @@ import { Media, movies } from 'src/assets/movies';
   styleUrls: ['./movie-details.component.css'],
 })
 export class MovieDetailsComponent implements OnInit {
-  movie!: Media | undefined;
+  movie!: Movie | undefined;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private mediaService: MediaService
+  ) {}
 
   ngOnInit(): void {
     const { movieId } = this.route.snapshot.params;
-    this.movie = movies.find((movie) => movie.id === Number(movieId));
+    this.mediaService.getMovieById(movieId).subscribe((data) => {
+      this.movie = data;
+    });
   }
 }

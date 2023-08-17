@@ -1,7 +1,7 @@
-import { Component, NgIterable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Media, movies } from 'src/assets/movies';
-import { series } from 'src/assets/series';
+import { Media } from 'src/app/medias.model';
+import { MediaService } from '../media.service';
 
 @Component({
   selector: 'app-mediaList',
@@ -9,18 +9,24 @@ import { series } from 'src/assets/series';
   styleUrls: ['./mediaList.component.css'],
 })
 export class MediaListComponent implements OnInit {
-  medias!: Array<Media> | undefined | null;
+  medias!: Media[];
+  type!: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private mediaService: MediaService) {}
 
   ngOnInit(): void {
     const url = this.router.url;
 
     if (url === '/movies') {
-      this.medias = [...movies];
+      this.mediaService.getMovies().subscribe((data) => {
+        this.medias = data;
+      });
     } else if (url === '/series') {
-      this.medias = [...series];
+      this.mediaService.getSeries().subscribe((data) => {
+        this.medias = data;
+      });
     }
+    this.type = url;
     //fall back else
   }
 }
