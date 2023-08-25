@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.server.moviecollection.collection.Collection;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +18,9 @@ public class Series {
     private Integer id;
     private String title;
     private String posterUrl;
-    private String year;
+    private int startYear;
+
+    private int endYear;
     private String[] directors;
     private String length;
     private Integer episodes;
@@ -30,10 +31,11 @@ public class Series {
     @JsonIgnore
     private List<Collection> collections;
 
-    public Series(String title, String posterUrl, String year, String[] directors, String length, Integer episodes, Integer seasons, boolean favourite, boolean watched) {
+    public Series(String title, String posterUrl, int startYear, int endYear, String[] directors, String length, Integer episodes, Integer seasons, boolean favourite, boolean watched) {
         this.title = title;
         this.posterUrl = posterUrl;
-        this.year = year;
+        this.startYear = startYear;
+        this.endYear = endYear;
         this.directors = directors;
         this.length = length;
         this.episodes = episodes;
@@ -52,10 +54,6 @@ public class Series {
 
     public String getPosterUrl() {
         return posterUrl;
-    }
-
-    public String getYear() {
-        return year;
     }
 
     public String[] getDirectors() {
@@ -94,10 +92,6 @@ public class Series {
         this.posterUrl = posterUrl;
     }
 
-    public void setYear(String year) {
-        this.year = year;
-    }
-
     public void setDirectors(String[] directors) {
         this.directors = directors;
     }
@@ -124,5 +118,21 @@ public class Series {
 
     public void setCollections(List<Collection> collections) {
         this.collections = collections;
+    }
+
+    public int getStartYear() {
+        return startYear;
+    }
+
+    public void setStartYear(int startYear) {
+        this.startYear = startYear;
+    }
+
+    public int getEndYear() {
+        return endYear;
+    }
+
+    public void setEndYear(int endYear) {
+        this.endYear = endYear;
     }
 }
