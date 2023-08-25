@@ -13,7 +13,8 @@ export interface Series {
   id: number;
   title: string;
   posterUrl: string;
-  year: string;
+  startYear: number;
+  endYear: number;
   directors: Array<string>;
   length: string;
   episodes: number;
