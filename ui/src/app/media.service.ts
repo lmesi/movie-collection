@@ -12,12 +12,20 @@ export class MediaService {
     return this.http.get<Movie[]>('/api/movies');
   }
 
+  getLimitedMovies() {
+    return this.http.get<Movie[]>('/api/movies?isLimited=true');
+  }
+
   getMovieById(id: number) {
     return this.http.get<Movie>(`/api/movies/${id}`);
   }
 
   getSeries() {
     return this.http.get<Series[]>('/api/series');
+  }
+
+  getLimitedSeries() {
+    return this.http.get<Series[]>('/api/series?isLimited=true');
   }
 
   getSeriesById(id: number) {

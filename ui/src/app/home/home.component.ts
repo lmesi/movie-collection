@@ -14,11 +14,11 @@ export class HomeComponent implements OnInit {
   constructor(private mediaService: MediaService) {}
 
   ngOnInit(): void {
-    this.mediaService.getMovies().subscribe((data) => {
+    this.mediaService.getLimitedMovies().subscribe((data) => {
       this.movies = data;
     });
 
-    this.mediaService.getSeries().subscribe((data) => {
+    this.mediaService.getLimitedSeries().subscribe((data) => {
       this.series = data;
     });
   }
