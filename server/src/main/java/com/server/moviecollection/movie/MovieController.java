@@ -26,7 +26,11 @@ public class MovieController {
     }
 
     @GetMapping("/api/movies")
-    public List<Movie> getAllMovies(){
+    public List<Movie> getMovies(@RequestParam(required = false) boolean isLimited){
+        if(isLimited) {
+            return movieRepository.findTop5ByOrderByIdAsc();
+        }
+
         return movieRepository.findAll();
     }
 

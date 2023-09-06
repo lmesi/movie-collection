@@ -28,7 +28,10 @@ public class SeriesController {
     }
 
     @GetMapping("/api/series")
-    public List<Series> getAllSeries(){
+    public List<Series> getSeries(@RequestParam(required = false) boolean isLimited){
+        if(isLimited)
+            return seriesRepository.findTop5ByOrderByIdAsc();
+
         return seriesRepository.findAll();
     }
 

@@ -7,4 +7,5 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findByTitleContaining(String keyword);
     List<Movie> findByYear(Integer year);
+    List<Movie> findTop5ByOrderByIdAsc();
 }
