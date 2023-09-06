@@ -40,13 +40,13 @@ public class SeriesController {
     }
 
     @GetMapping("api/series/search")
-    public ResponseEntity<Object> searchForSeries(@RequestParam(required = false) String title, @RequestParam(required = false) Integer year){
+    public ResponseEntity<Object> searchForSeries(@RequestParam String title, @RequestParam Integer year){
         Set<Series> series = new HashSet<>();
-        if(title != null){
+        if(!title.equals("")){
             series.addAll(seriesRepository.findByTitleContaining(title));
         }
 
-        if(year != null){
+        if(year != 0){
             series.addAll(seriesRepository.findByStartYearLessThanEqualAndEndYearGreaterThanEqual(year, year));
         }
 

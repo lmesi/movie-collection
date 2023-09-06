@@ -38,13 +38,13 @@ public class MovieController {
     }
 
     @GetMapping("api/movies/search")
-    public ResponseEntity<Object> searchForMovie(@RequestParam(required = false) String title, @RequestParam(required = false) Integer year){
+    public ResponseEntity<Object> searchForMovie(@RequestParam String title, @RequestParam Integer year){
         Set<Movie> movies = new HashSet<>();
-        if(title != null){
+        if(!title.equals("")){
             movies.addAll(movieRepository.findByTitleContaining(title));
         }
 
-        if(year != null){
+        if(year != 0){
             movies.addAll(movieRepository.findByYear(year));
         }
 
