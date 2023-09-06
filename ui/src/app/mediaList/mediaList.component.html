@@ -1,7 +1,25 @@
-<h1 *ngIf="medias">{{ type === "/movies" ? "Movies" : "Series" }}</h1>
-<div class="movies-container">
-  <div *ngFor="let media of medias">
-    <a [routerLink]="[type, media.id]">
+<h1 *ngIf="medias">{{ type | titlecase }}</h1>
+<label htmlFor="searchTitle">Search for title: </label>
+<input
+  id="searchTitle"
+  type="text"
+  [(ngModel)]="searchTitle"
+  placeholder="Title"
+/>
+<label htmlFor="searchYear">Search for year: </label>
+<input
+  id="searchYear"
+  type="number"
+  min="1900"
+  [max]="maxYear"
+  [(ngModel)]="searchYear"
+  placeholder="Year"
+/>
+<button type="button" (click)="handleSearch()">Search</button>
+<p *ngIf="!isYearValid" class="errorMessage">Year must be above 1900</p>
+<div class="media-container">
+  <div *ngFor="let media of medias" class="mediaCard">
+    <a [routerLink]="['/' + type, media.id]">
       <img [src]="media.posterUrl" class="poster-img" />
     </a>
     <h4>{{ media.title }}</h4>

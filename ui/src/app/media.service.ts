@@ -23,4 +23,10 @@ export class MediaService {
   getSeriesById(id: number) {
     return this.http.get<Series>(`/api/series/${id}`);
   }
+
+  searchForMedias(type: String, title: String, year: number) {
+    return this.http.get<Series[] | Movie[]>(
+      `/api/${type}/search?title=${title}&year=${year}`
+    );
+  }
 }
