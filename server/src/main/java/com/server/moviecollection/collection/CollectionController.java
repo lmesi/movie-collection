@@ -24,7 +24,10 @@ public class CollectionController {
     }
 
     @GetMapping("/api/collections")
-    public List<Collection> getAllCollections(){
+    public List<Collection> getAllCollections(@RequestParam(required = false) boolean isLimited){
+        if(isLimited){
+            return collectionRepository.findTop5ByOrderByIdAsc();
+        }
         return collectionRepository.findAll();
     }
 
