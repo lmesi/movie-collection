@@ -12,6 +12,10 @@ export class CollectionService {
     return this.http.get<Collection[]>('/api/collections');
   }
 
+  getLimitedCollections() {
+    return this.http.get<Collection[]>('/api/collections?isLimited=true');
+  }
+
   getCollection(id: number) {
     return this.http.get<Collection>(`/api/collections/${id}`);
   }

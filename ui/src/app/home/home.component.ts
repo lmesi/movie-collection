@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie, Series } from '../medias.model';
 import { MediaService } from '../media.service';
+import { CollectionBasic } from '../collection.model';
+import { CollectionService } from '../collection.service';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +12,12 @@ import { MediaService } from '../media.service';
 export class HomeComponent implements OnInit {
   movies!: Movie[];
   series!: Series[];
+  collections!: CollectionBasic[];
 
-  constructor(private mediaService: MediaService) {}
+  constructor(
+    private mediaService: MediaService,
+    private collectionService: CollectionService
+  ) {}
 
   ngOnInit(): void {
     this.mediaService.getLimitedMovies().subscribe((data) => {
@@ -21,9 +27,9 @@ export class HomeComponent implements OnInit {
     this.mediaService.getLimitedSeries().subscribe((data) => {
       this.series = data;
     });
-  }
 
-  numSequence(n: number): Array<number> {
-    return Array(n);
+    this.collectionService.getLimitedCollections().subscribe((data) => {
+      this.collections = data;
+    });
   }
 }
