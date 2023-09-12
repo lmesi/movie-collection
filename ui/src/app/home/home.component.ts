@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   movies!: Movie[];
   series!: Series[];
   collections!: CollectionBasic[];
+  isThereCollectionsToShow!: Boolean;
 
   constructor(
     private mediaService: MediaService,
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
 
     this.collectionService.getLimitedCollections().subscribe((data) => {
       this.collections = data;
+      this.isThereCollectionsToShow = this.collections.length > 0;
     });
   }
 }
