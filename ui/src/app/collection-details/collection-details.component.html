@@ -1,7 +1,8 @@
 <div *ngIf="collection">
   <h1>{{ collection.title }}</h1>
-  <h3>Movies</h3>
+  <h2>Movies</h2>
   <div class="media-container">
+    <h2 *ngIf="!shouldShowMovies">No movies in collection to show</h2>
     <div *ngFor="let movie of collection.movies" class="media-card">
       <button
         type="button"
@@ -27,8 +28,9 @@
       </a>
     </div>
   </div>
-  <h3>Series</h3>
+  <h2>Series</h2>
   <div class="media-container">
+    <h2 *ngIf="!shouldShowSeries">No series in collection to show</h2>
     <div *ngFor="let ser of collection.series" class="media-card">
       <button
         type="button"

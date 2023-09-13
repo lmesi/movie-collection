@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class CollectionDetailsComponent implements OnInit {
   collection!: Collection;
   collectionId!: number;
+  shouldShowMovies!: boolean;
+  shouldShowSeries!: boolean;
 
   constructor(
     private collectionService: CollectionService,
@@ -24,6 +26,8 @@ export class CollectionDetailsComponent implements OnInit {
       .getCollection(this.collectionId)
       .subscribe((data) => {
         this.collection = data;
+        this.shouldShowMovies = this.collection.movies.length > 0;
+        this.shouldShowSeries = this.collection.series.length > 0;
       });
   }
 
