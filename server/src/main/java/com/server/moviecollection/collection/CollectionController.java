@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CollectionController {
@@ -54,24 +55,29 @@ public class CollectionController {
 
     @PutMapping("/api/collections/{id}/add")
     public ResponseEntity<Object> addMediaToCollection(@RequestParam String type, @RequestParam(name = "id") int mediaId, @PathVariable int id){
-        Collection collection = collectionRepository.findById(id).orElse(null);
+        Optional<Collection> optionalCollection = collectionRepository.findById(id);
 
-        if(collection == null) return ResponseEntity.notFound().build();
+        if(optionalCollection.isEmpty()) return ResponseEntity.notFound().build();
+        Collection collection = optionalCollection.get();
 
         if(type.equals("movie")) {
-            Movie movie = movieRepository.findById(mediaId).orElse(null);
-            if (movie == null) return ResponseEntity.notFound().build();
+            Optional<Movie> movie = movieRepository.findById(mediaId);
+            if (movie.isEmpty()) return ResponseEntity.notFound().build();
 
-            collection.addMovie(movie);
+            if(collection.getMovies().contains(movie.get())) return ResponseEntity.badRequest().build();
+
+            collection.getMovies().add(movie.get());
 
             return ResponseEntity.ok(collectionRepository.save(collection));
         }
 
         if(type.equals("series")) {
-            Series series = seriesRepository.findById(mediaId).orElse(null);
-            if (series == null) return ResponseEntity.notFound().build();
+            Optional<Series> series = seriesRepository.findById(mediaId);
+            if (series.isEmpty()) return ResponseEntity.notFound().build();
 
-            collection.addSeries(series);
+            if(collection.getSeries().contains(series.get())) return ResponseEntity.badRequest().build();
+
+            collection.getSeries().add(series.get());
 
             return ResponseEntity.ok(collectionRepository.save(collection));
         }
@@ -81,24 +87,25 @@ public class CollectionController {
 
     @PutMapping("/api/collections/{id}/remove")
     public ResponseEntity<Object> removeMediaFromCollection(@RequestParam String type, @RequestParam(name = "id") int mediaId, @PathVariable int id){
-        Collection collection = collectionRepository.findById(id).orElse(null);
+        Optional<Collection> optionalCollection = collectionRepository.findById(id);
 
-        if(collection == null) return ResponseEntity.notFound().build();
+        if(optionalCollection.isEmpty()) return ResponseEntity.notFound().build();
+        Collection collection = optionalCollection.get();
 
         if(type.equals("movie")) {
-            Movie movie = movieRepository.findById(mediaId).orElse(null);
-            if (movie == null) return ResponseEntity.notFound().build();
+            Optional<Movie> movie = movieRepository.findById(mediaId);
+            if (movie.isEmpty()) return ResponseEntity.notFound().build();
 
-            collection.removeMovie(movie);
+            collection.getMovies().remove(movie.get());
 
             return ResponseEntity.ok(collectionRepository.save(collection));
         }
 
         if(type.equals("series")) {
-            Series series = seriesRepository.findById(mediaId).orElse(null);
-            if (series == null) return ResponseEntity.notFound().build();
+            Optional<Series> optionalSeries = seriesRepository.findById(mediaId);
+            if (optionalSeries.isEmpty()) return ResponseEntity.notFound().build();
 
-            collection.removeSeries(series);
+            collection.getSeries().remove(optionalSeries.get());
 
             return ResponseEntity.ok(collectionRepository.save(collection));
         }
