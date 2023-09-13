@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.server.moviecollection.collection.Collection;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,7 @@ public class Series {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
     private String posterUrl;
@@ -27,9 +28,9 @@ public class Series {
     private  Integer seasons;
     private boolean favourite;
     private boolean watched;
-    @ManyToMany
+    @ManyToMany(mappedBy = "series")
     @JsonIgnore
-    private List<Collection> collections;
+    private List<Collection> collections = new ArrayList<>();
 
     public Series(String title, String posterUrl, int startYear, int endYear, String[] directors, String length, Integer episodes, Integer seasons, boolean favourite, boolean watched) {
         this.title = title;

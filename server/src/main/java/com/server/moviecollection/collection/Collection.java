@@ -6,9 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Collection {
@@ -17,14 +15,15 @@ public class Collection {
 
     }
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Size(min=5)
     private String title;
     @ManyToMany
-    private List<Movie> movies;
+    private List<Movie> movies = new ArrayList<>();
+
     @ManyToMany
-    private List<Series> series;
+    private List<Series> series = new ArrayList<>();
 
     public Collection(String title) {
         this.title = title;
@@ -57,21 +56,4 @@ public class Collection {
     public void setSeries(List<Series> series) {
         this.series = series;
     }
-
-    public void addMovie(Movie movie){
-        this.movies.add(movie);
-    }
-
-    public void removeMovie(Movie movie){
-        this.movies.remove(movie);
-    }
-
-    public void addSeries(Series newSeries){
-        this.series.add(newSeries);
-    }
-
-    public void removeSeries(Series media){
-        this.series.remove(media);
-    }
-
 }
