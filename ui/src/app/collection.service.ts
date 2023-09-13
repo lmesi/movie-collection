@@ -1,6 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Collection } from './collection.model';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +33,19 @@ export class CollectionService {
 
   deleteCollection(id: number) {
     return this.http.delete(`/api/collections/${id}`);
+  }
+
+  addToCollection(movieId: number, collectionId: number, type: string) {
+    return this.http.put(
+      `/api/collections/${collectionId}/add?type=${type}&id=${movieId}`,
+      {}
+    );
+  }
+
+  removeFromCollection(movieId: number, collectionId: number, type: string) {
+    return this.http.put(
+      `/api/collections/${collectionId}/remove?type=${type}&id=${movieId}`,
+      {}
+    );
   }
 }

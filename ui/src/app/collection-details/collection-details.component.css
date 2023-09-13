@@ -5,6 +5,23 @@
 .media-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   text-align: center;
+}
+
+.media-card {
+  position: relative;
+  flex-direction: column;
+}
+
+.media-card > button {
+  width: fit-content;
+  position: absolute;
+  right: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }

@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CollectionDetailsComponent implements OnInit {
   collection!: Collection;
+  collectionId!: number;
 
   constructor(
     private collectionService: CollectionService,
@@ -18,8 +19,23 @@ export class CollectionDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const { collectionId } = this.route.snapshot.params;
-    this.collectionService.getCollection(collectionId).subscribe((data) => {
-      this.collection = data;
-    });
+    this.collectionId = collectionId;
+    this.collectionService
+      .getCollection(this.collectionId)
+      .subscribe((data) => {
+        this.collection = data;
+      });
+  }
+
+  handleDelete(movieId: number, type: string) {
+    this.collectionService
+      .removeFromCollection(movieId, this.collectionId, type)
+      .subscribe(() => {
+        this.collectionService
+          .getCollection(this.collectionId)
+          .subscribe((data) => {
+            this.collection = data;
+          });
+      });
   }
 }
