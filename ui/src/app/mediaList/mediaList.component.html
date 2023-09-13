@@ -1,27 +1,45 @@
-<h1 *ngIf="medias">{{ type | titlecase }}</h1>
-<label htmlFor="searchTitle">Search for title: </label>
-<input
-  id="searchTitle"
-  type="text"
-  [(ngModel)]="searchTitle"
-  placeholder="Title"
-/>
-<label htmlFor="searchYear">Search for year: </label>
-<input
-  id="searchYear"
-  type="number"
-  min="1900"
-  [max]="maxYear"
-  [(ngModel)]="searchYear"
-  placeholder="Year"
-/>
-<button type="button" (click)="handleSearch()">Search</button>
+<h1 *ngIf="medias" (click)="refreshPage()">{{ type | titlecase }}</h1>
+<form
+  class="search-container"
+  [formGroup]="searchForm"
+  (ngSubmit)="handleSearch()"
+>
+  <mat-form-field class="input">
+    <mat-label>Search For Title</mat-label>
+    <input
+      matInput
+      placeholder="Title"
+      type="text"
+      minlength="2"
+      formControlName="title"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Search For Year</mat-label>
+    <input
+      matInput
+      placeholder="Year"
+      type="number"
+      formControlName="year"
+      min="1900"
+      [max]="maxYear"
+    />
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!searchForm.valid"
+  >
+    Search
+  </button>
+</form>
 <p *ngIf="!isYearValid" class="errorMessage">Year must be above 1900</p>
 <div class="media-container">
   <div *ngFor="let media of medias" class="mediaCard">
     <a [routerLink]="['/' + type, media.id]">
       <img [src]="media.posterUrl" class="poster-img" />
+      <h4>{{ media.title }}</h4>
     </a>
-    <h4>{{ media.title }}</h4>
   </div>
 </div>
