@@ -12,6 +12,7 @@ import { CollectionService } from '../collection.service';
 })
 export class MovieDetailsComponent implements OnInit {
   movie!: Movie | undefined;
+  movieId!: number;
   selectedCollection: number | undefined;
   collectionOptions!: CollectionBasic[];
 
@@ -23,8 +24,8 @@ export class MovieDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const { movieId } = this.route.snapshot.params;
-    this.mediaService.getMovieById(movieId).subscribe((data) => {
+    this.movieId = this.route.snapshot.params['movieId'];
+    this.mediaService.getMovieById(this.movieId).subscribe((data) => {
       this.movie = data;
     });
     this.collectionService.getCollections().subscribe((data) => {
@@ -34,10 +35,9 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   addToCollection() {
-    const { movieId } = this.route.snapshot.params;
     if (this.selectedCollection !== undefined)
       this.collectionService
-        .addToCollection(movieId, this.selectedCollection, 'movie')
+        .addToCollection(this.movieId, this.selectedCollection, 'movie')
         .subscribe(() => {
           this.router.navigate(['/collections', this.selectedCollection], {
             relativeTo: this.route.root,
