@@ -1,7 +1,7 @@
 .component-container {
   display: flex;
   flex-direction: row;
-  padding: 80px 30px;
+  padding: 50px 30px;
 }
 
 .component-container > img {
@@ -16,6 +16,10 @@
   font-size: 25px;
 }
 
-h1 {
+h2 {
   text-align: center;
+}
+
+.addBtn {
+  margin-left: 40px;
 }

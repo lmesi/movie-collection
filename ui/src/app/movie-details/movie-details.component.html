@@ -1,22 +1,41 @@
 <div *ngIf="movie">
-  <h1>{{ movie.title }}</h1>
   <div class="component-container">
     <img [src]="movie.posterUrl" alt="poster" />
     <div class="details-container">
+      <h2>{{ movie.title }}</h2>
       <p>Director(s): {{ movie.directors.join(", ") }}</p>
       <p>Play time: {{ movie.length }}</p>
       <p>Released in {{ movie.year }}</p>
-      <p>{{ movie.watched ? "Already seen" : "Not seen yet" }}</p>
-      <label htmlFor="collectionSelect">Add to Collection:</label>
-      <select [(ngModel)]="selectedCollection" id="collectionSelect">
-        <option
+      <!-- <p>{{ movie.watched ? "Already seen" : "Not seen yet" }}</p> -->
+      <span>
+        <mat-form-field>
+          <mat-label>Collection</mat-label>
+          <mat-select [(ngModel)]="selectedCollection">
+            <mat-option
+              *ngFor="let collection of collectionOptions"
+              [value]="collection.id"
+            >
+              {{ collection.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          class="addBtn"
+          (click)="addToCollection()"
+        >
+          Add to Collection
+        </button>
+        <!-- <select [(ngModel)]="selectedCollection" id="collectionSelect">
+          <option
           *ngFor="let collection of collectionOptions"
           [value]="collection.id"
-        >
+          >
           {{ collection.title }}
         </option>
-      </select>
-      <button (click)="addToCollection()">Select collection</button>
+      </select> -->
+      </span>
     </div>
   </div>
 </div>
