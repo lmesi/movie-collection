@@ -7,6 +7,16 @@
       <p>Play time: {{ movie.length }}</p>
       <p>Released in {{ movie.year }}</p>
       <p>{{ movie.watched ? "Already seen" : "Not seen yet" }}</p>
+      <label htmlFor="collectionSelect">Add to Collection:</label>
+      <select [(ngModel)]="selectedCollection" id="collectionSelect">
+        <option
+          *ngFor="let collection of collectionOptions"
+          [value]="collection.id"
+        >
+          {{ collection.title }}
+        </option>
+      </select>
+      <button (click)="addToCollection()">Select collection</button>
     </div>
   </div>
 </div>
