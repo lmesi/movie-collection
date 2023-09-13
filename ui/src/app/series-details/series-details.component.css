@@ -16,6 +16,10 @@
   font-size: 25px;
 }
 
-h1 {
+h2 {
   text-align: center;
+}
+
+.addBtn {
+  margin-left: 40px;
 }

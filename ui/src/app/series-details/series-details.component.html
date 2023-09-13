@@ -1,14 +1,35 @@
 <div *ngIf="series">
-  <h1>{{ series.title }}</h1>
   <div class="component-container">
     <img [src]="series.posterUrl" alt="poster" />
     <div class="details-container">
+      <h2>{{ series.title }}</h2>
       <p>Creator(s): {{ series.directors.join(", ") }}</p>
       <p>Episodes: {{ series.episodes }}</p>
       <p>Seasones: {{ series.seasons }}</p>
       <p>Average play time per episode: {{ series.length }}</p>
       <p>Played between {{ series.startYear }} - {{ series.endYear }}</p>
-      <p>{{ series.watched ? "Already seen" : "Not seen yet" }}</p>
+      <!-- <p>{{ series.watched ? "Already seen" : "Not seen yet" }}</p> -->
+      <span>
+        <mat-form-field>
+          <mat-label>Collection</mat-label>
+          <mat-select [(ngModel)]="selectedCollection">
+            <mat-option
+              *ngFor="let collection of collectionOptions"
+              [value]="collection.id"
+            >
+              {{ collection.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          class="addBtn"
+          (click)="addToCollection()"
+        >
+          Add to Collection
+        </button>
+      </span>
     </div>
   </div>
 </div>
