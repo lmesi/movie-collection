@@ -1,8 +1,13 @@
+h1 {
+  margin-left: 2vw;
+}
+
 .collections-container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
+  margin: 0 8vw;
 }
 
 .card-container {
@@ -15,7 +20,7 @@
   border-radius: 30px;
   width: 215px;
   text-align: center;
-  margin: 20px 10px;
+  margin: 20px;
 }
 
 .card-container > h3 {
@@ -36,4 +41,19 @@
   background-color: transparent;
   width: fit-content;
   margin-top: 10px;
+}
+
+.addBtn {
+  margin-left: 30px;
+}
+
+.input {
+  margin: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

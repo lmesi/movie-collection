@@ -1,8 +1,23 @@
 <h1>My collections</h1>
-<div>
-  <button type="button" (click)="addCollection()">Add new collection</button>
-  <input type="text" [(ngModel)]="inputTitle" />
+<div class="input-container">
+  <mat-form-field class="input">
+    <mat-label>Collection Name</mat-label>
+    <input matInput placeholder="Favourite" [(ngModel)]="inputTitle" />
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color="primary"
+    class="addBtn"
+    type="button"
+    (click)="addCollection()"
+  >
+    Add new collection
+  </button>
 </div>
+<!-- <div>
+  <button type="button">Add new collection</button>
+  <input type="text" [(ngModel)]="inputTitle" />
+</div> -->
 <div class="collections-container">
   <div class="card-container" *ngFor="let collection of collections">
     <a [routerLink]="['/collections', collection.id]">
