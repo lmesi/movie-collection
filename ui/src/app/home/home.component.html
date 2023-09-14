@@ -1,4 +1,4 @@
-<div>
+<div class="main-container">
   <h3>My collections</h3>
   <h2 *ngIf="!shouldShowCollections">There's no collection to show</h2>
   <div class="poster-img-container">
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<div>
+<div class="main-container">
   <h3>Movies</h3>
   <div class="poster-img-container">
     <a [routerLink]="['/movies', movie.id]" *ngFor="let movie of movies">
@@ -47,7 +47,7 @@
   </div>
 </div>
 
-<div>
+<div class="main-container">
   <h3>Series</h3>
   <div class="poster-img-container">
     <a [routerLink]="['/series', ser.id]" *ngFor="let ser of series">

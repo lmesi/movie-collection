@@ -8,6 +8,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   text-align: center;
+  margin: 4vh 2vw;
 }
 
 .media-card {
@@ -24,4 +25,8 @@
 a {
   text-decoration: none;
   color: white;
+}
+
+h2 {
+  margin: 0 2vw;
 }
