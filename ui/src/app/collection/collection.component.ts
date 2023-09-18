@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Collection } from '../collection.model';
 import { CollectionService } from '../collection.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogWarningComponent } from '../dialog-warning/dialog-warning.component';
 
 @Component({
   selector: 'app-collection',
@@ -9,8 +11,12 @@ import { CollectionService } from '../collection.service';
 })
 export class CollectionComponent implements OnInit {
   collections!: Collection[];
+  inputTitle: string = '';
 
-  constructor(private collectionService: CollectionService) {}
+  constructor(
+    private collectionService: CollectionService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.collectionService.getCollections().subscribe((data) => {
@@ -18,11 +24,32 @@ export class CollectionComponent implements OnInit {
     });
   }
 
-  inputTitle: string = '';
+  openDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string,
+    collectionName: string,
+    collectionId: number
+  ): void {
+    const dialogRef = this.dialog.open(DialogWarningComponent, {
+      data: {
+        collectionName,
+        title: 'Delete collection',
+        message: `Are you sure you want to delete the "${collectionName}" collection`,
+      },
+      width: '400px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteCollection(collectionId);
+      }
+    });
+  }
 
   addCollection() {
-    this.collectionService.postCollection(this.inputTitle).subscribe((data) => {
-      console.log('added');
+    this.collectionService.postCollection(this.inputTitle).subscribe(() => {
       this.collectionService.getCollections().subscribe((data) => {
         this.collections = data;
         this.inputTitle = '';
@@ -31,8 +58,7 @@ export class CollectionComponent implements OnInit {
   }
 
   deleteCollection(id: number) {
-    this.collectionService.deleteCollection(id).subscribe((data) => {
-      console.log('delete');
+    this.collectionService.deleteCollection(id).subscribe(() => {
       this.collectionService.getCollections().subscribe((data) => {
         this.collections = data;
       });
