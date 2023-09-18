@@ -18,6 +18,8 @@ public class CollectionController {
     private MovieRepository movieRepository;
     private SeriesRepository seriesRepository;
 
+    private final String ALREADY_ADDED = "ALREADY_ADDED";
+
     public CollectionController(CollectionRepository collectionRepository, MovieRepository movieRepository, SeriesRepository seriesRepository){
         this.collectionRepository = collectionRepository;
         this.movieRepository = movieRepository;
@@ -64,7 +66,7 @@ public class CollectionController {
             Optional<Movie> movie = movieRepository.findById(mediaId);
             if (movie.isEmpty()) return ResponseEntity.notFound().build();
 
-            if(collection.getMovies().contains(movie.get())) return ResponseEntity.badRequest().build();
+            if(collection.getMovies().contains(movie.get())) return ResponseEntity.badRequest().body(ALREADY_ADDED);
 
             collection.getMovies().add(movie.get());
 
@@ -75,14 +77,14 @@ public class CollectionController {
             Optional<Series> series = seriesRepository.findById(mediaId);
             if (series.isEmpty()) return ResponseEntity.notFound().build();
 
-            if(collection.getSeries().contains(series.get())) return ResponseEntity.badRequest().build();
+            if(collection.getSeries().contains(series.get())) return ResponseEntity.badRequest().body(ALREADY_ADDED);
 
             collection.getSeries().add(series.get());
 
             return ResponseEntity.ok(collectionRepository.save(collection));
         }
 
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.internalServerError().build();
     }
 
     @PutMapping("/api/collections/{id}/remove")
