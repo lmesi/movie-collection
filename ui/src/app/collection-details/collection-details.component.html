@@ -7,7 +7,7 @@
       <button
         type="button"
         title="Remove from collection"
-        (click)="handleDelete(movie.id, 'movie')"
+        (click)="openDialog('0ms', '0ms', 'movie', movie.id, movie.title)"
       >
         <svg
           fill="#FF0000"
@@ -35,7 +35,7 @@
       <button
         type="button"
         title="Remove from collection"
-        (click)="handleDelete(ser.id, 'series')"
+        (click)="openDialog('0ms', '0ms', 'series', ser.id, ser.title)"
       >
         <svg
           fill="#FF0000"
