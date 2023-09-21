@@ -16,12 +16,6 @@ public class MovieController {
 
     public MovieController (MovieRepository movieRepository){
         this.movieRepository = movieRepository;
-
-//        movieRepository.save(new Movie("Shrek", "/assets/Shrek.jpg", 2001, new String[]{"Andrew Adamson", "Vicky Jenson"}, "1h 30m", false, true));
-//        movieRepository.save(new Movie("Forrest Gump", "/assets/Forrest_Gump.jpg", 1994, new String[]{"Robert Zemeckis"}, "2h 22m", false, false));
-//        movieRepository.save(new Movie("Fight Club", "/assets/Fight_Club.jpg", 1999, new String[]{"David Fincher"}, "2h 19m", false, true));
-//        movieRepository.save(new Movie("The Matrix", "/assets/The_Matrix.jpg", 1999, new String[]{"Lana Wachowski", "Lilly Wachowski"}, "2h 16m", false, false));
-//        movieRepository.save(new Movie("Inception", "/assets/Inception.jpg", 2010, new String[]{"Christopher Nolan"}, "2h 28m", false, true));
     }
 
     @GetMapping("/api/movies")
