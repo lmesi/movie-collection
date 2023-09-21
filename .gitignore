@@ -108,17 +108,4 @@ server/.mvn/timing.properties
 server/.mvn/wrapper/maven-wrapper.jar
 
 #Other
-ui/src/assets/Shrek.jpg
-ui/src/assets/Fight_Club.jpg
-ui/src/assets/Forrest_Gump.jpg
-ui/src/assets/Inception.jpg
-ui/src/assets/The_Matrix.jpg
-ui/src/assets/Friends.jpg
-ui/src/assets/Rick_and_Morty.jpg
-ui/src/assets/The_Office.jpg
-ui/src/assets/Stranger_Things.jpg
-ui/src/assets/House_MD.jpg
-ui/src/assets/movies.ts
-ui/src/assets/series.ts
-ui/src/assets/checklist.svg
-ui/src/assets/delete.svg
+ui/src/assets/*
