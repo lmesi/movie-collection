@@ -1,7 +1,9 @@
 <div class="main-container">
-  <h3>My collections</h3>
-  <h2 *ngIf="!shouldShowCollections">There's no collection to show</h2>
-  <div class="poster-img-container">
+  <h2>My collections</h2>
+  <h3 *ngIf="!shouldShowCollections" class="errorMessage">
+    There's no collection to show
+  </h3>
+  <div *ngIf="shouldShowCollections" class="poster-img-container">
     <a
       class="card-container"
       [routerLink]="['/collections', collection.id]"
@@ -39,8 +41,11 @@
 </div>
 
 <div class="main-container">
-  <h3>Movies</h3>
-  <div class="poster-img-container">
+  <h2>Movies</h2>
+  <h3 *ngIf="!shouldShowMovies" class="errorMessage">
+    There's no movie to show
+  </h3>
+  <div *ngIf="shouldShowMovies" class="poster-img-container">
     <a [routerLink]="['/movies', movie.id]" *ngFor="let movie of movies">
       <img class="poster-img" [src]="movie.posterUrl" alt="Shrek poster" />
     </a>
@@ -48,8 +53,11 @@
 </div>
 
 <div class="main-container">
-  <h3>Series</h3>
-  <div class="poster-img-container">
+  <h2>Series</h2>
+  <h3 *ngIf="!shouldShowMovies" class="errorMessage">
+    There's no series to show
+  </h3>
+  <div *ngIf="shouldShowSeries" class="poster-img-container">
     <a [routerLink]="['/series', ser.id]" *ngFor="let ser of series">
       <img class="poster-img" [src]="ser.posterUrl" alt="Shrek poster" />
     </a>

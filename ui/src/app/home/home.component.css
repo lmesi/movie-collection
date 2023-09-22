@@ -1,6 +1,15 @@
 .main-container {
   margin: 0 2vw;
+  min-height: 250px;
 }
+
+.errorMessage {
+  text-align: center;
+  line-height: 186px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
 .poster-img {
   height: 250px;
 }

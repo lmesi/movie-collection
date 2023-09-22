@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   series!: Series[];
   collections!: CollectionBasic[];
   shouldShowCollections!: Boolean;
+  shouldShowMovies!: Boolean;
+  shouldShowSeries!: Boolean;
 
   constructor(
     private mediaService: MediaService,
@@ -23,10 +25,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.mediaService.getLimitedMovies().subscribe((data) => {
       this.movies = data;
+      this.shouldShowMovies = this.movies.length > 0;
     });
 
     this.mediaService.getLimitedSeries().subscribe((data) => {
       this.series = data;
+      this.shouldShowSeries = this.series.length > 0;
     });
 
     this.collectionService.getLimitedCollections().subscribe((data) => {
