@@ -40,6 +40,11 @@ button {
   margin: 20px;
 }
 
-.errorMessage {
+.errorMessageYear {
   color: red;
+}
+
+.errorMessage {
+  text-align: center;
+  margin-top: 25vh;
 }

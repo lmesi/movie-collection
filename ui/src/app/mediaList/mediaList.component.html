@@ -1,4 +1,4 @@
-<h1 *ngIf="medias" (click)="refreshPage()">{{ type | titlecase }}</h1>
+<h1 (click)="refreshPage()">{{ type | titlecase }}</h1>
 <form
   class="search-container"
   [formGroup]="searchForm"
@@ -34,8 +34,11 @@
     Search
   </button>
 </form>
-<p *ngIf="!isYearValid" class="errorMessage">Year must be above 1900</p>
-<div class="media-container">
+<p *ngIf="!isYearValid" class="errorMessageYear">Year must be above 1900</p>
+<h1 *ngIf="medias.length === 0" class="errorMessage">
+  There's no media to show
+</h1>
+<div *ngIf="medias.length > 0" class="media-container">
   <div *ngFor="let media of medias" class="mediaCard">
     <a [routerLink]="['/' + type, media.id]">
       <img [src]="media.posterUrl" class="poster-img" />
