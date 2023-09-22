@@ -57,3 +57,8 @@ h1 {
   align-items: center;
   justify-content: center;
 }
+
+.errorMessage {
+  text-align: center;
+  margin-top: 25vh;
+}

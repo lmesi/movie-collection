@@ -14,11 +14,10 @@
     Add new collection
   </button>
 </div>
-<!-- <div>
-  <button type="button">Add new collection</button>
-  <input type="text" [(ngModel)]="inputTitle" />
-</div> -->
-<div class="collections-container">
+<h1 *ngIf="collections.length === 0" class="errorMessage">
+  There's no collection to show
+</h1>
+<div *ngIf="collections.length > 0" class="collections-container">
   <div class="card-container" *ngFor="let collection of collections">
     <a [routerLink]="['/collections', collection.id]">
       <svg
