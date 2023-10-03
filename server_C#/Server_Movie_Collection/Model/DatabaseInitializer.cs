@@ -73,6 +73,24 @@ public static class DatabaseInitializer
             await context.SaveChangesAsync();
         }
 
+        if (context.Directors.Any() && !context.Series.Any())
+        {
+            context.Series.AddRange(
+                new Series(){Title = "Friends", Directors = new List<Director>(){context.Directors.First(director => director.Name.Equals("David Crane")),context.Directors.First(director => director.Name.Equals("Marta Kauffman"))}, PosterUrl = "/assets/Friends.jpg", Episodes = 234, Seasons = 10, Length = "20m", StartYear = 1994, EndYear = 2004, Favourite = true, Watched = true},
+                new Series(){Title = "Rick and Morty", Directors = new List<Director>(){context.Directors.First(director => director.Name.Equals("Dan Harmon")),context.Directors.First(director => director.Name.Equals("Justin Roiland"))}, PosterUrl = "/assets/Rick_and_Morty.jpg", Episodes = 63, Seasons = 6, Length = "23m", StartYear = 2013, EndYear = 2024, Favourite = false, Watched = false},
+                new Series(){Title = "The Office", Directors = new List<Director>(){context.Directors.First(director => director.Name.Equals("Greg Daniels")),context.Directors.First(director => director.Name.Equals("Ricky Gervais")), context.Directors.First(director => director.Name.Equals("Stephen Merchant"))}, PosterUrl = "/assets/The_Office.jpg", Episodes = 188, Seasons = 9, Length = "22m", StartYear = 2005, EndYear = 2013, Favourite = false, Watched = true},
+                new Series(){Title = "House M.D.", Directors = new List<Director>(){context.Directors.First(director => director.Name.Equals("David Shore"))}, PosterUrl = "/assets/House_MD.jpg", Episodes = 176, Seasons = 8, Length = "44m", StartYear = 2004, EndYear = 2012, Favourite = false, Watched = true},
+                new Series(){Title = "Stranger Things", Directors = new List<Director>(){context.Directors.First(director => director.Name.Equals("Matt Duffer")),context.Directors.First(director => director.Name.Equals("Ross Duffer"))}, PosterUrl = "/assets/Stranger_Things.jpg", Episodes = 42, Seasons = 5, Length = "51m", StartYear = 2016, EndYear = 2024, Favourite = true, Watched = true},
+                new Series(){Title = "The Big Bang Theory", Directors = new List<Director>(){context.Directors.First(director => director.Name.Equals("Chuck Lorre")),context.Directors.First(director => director.Name.Equals("Bill Prady"))}, PosterUrl = "/assets/The_Big_Bang_Theory.jpg", Episodes = 280, Seasons = 12, Length = "22m", StartYear = 2007, EndYear = 2019, Favourite = false, Watched = false},
+                new Series(){Title = "Doctor Who", Directors = new List<Director>(){context.Directors.First(director => director.Name.Equals("Sydney Newman"))}, PosterUrl = "/assets/Doctor_Who.jpg", Episodes = 211, Seasons = 14, Length = "45m", StartYear = 2005, EndYear = 2023, Favourite = true, Watched = true},
+                new Series(){Title = "The Queen's Gambit", Directors = new List<Director>(){context.Directors.First(director => director.Name.Equals("Scott Frank")),context.Directors.First(director => director.Name.Equals("Allan Scott"))}, PosterUrl = "/assets/The_Queen's_Gambit.jpg", Episodes = 7, Seasons = 1, Length = "1h", StartYear = 2020, EndYear = 2020, Favourite = true, Watched = true},
+                new Series(){Title = "Battlestar Galactica", Directors = new List<Director>(){context.Directors.First(director => director.Name.Equals("Glen A. Larson")),context.Directors.First(director => director.Name.Equals("Ronald D. Moore"))}, PosterUrl = "/assets/Battlestar_Galactica.jpg", Episodes = 74, Seasons = 4, Length = "44m", StartYear = 2004, EndYear = 2009, Favourite = true, Watched = true},
+                new Series(){Title = "Star Trek: Strange New Worlds", Directors = new List<Director>(){context.Directors.First(director => director.Name.Equals("Akiva Goldsman")),context.Directors.First(director => director.Name.Equals("Alex Kurtzman")), context.Directors.First(director => director.Name.Equals("Jenny Lumet"))}, PosterUrl = "/assets/Star_Trek.jpg", Episodes = 30, Seasons = 3, Length = "52m", StartYear = 2022, EndYear = 2023, Favourite = true, Watched = true}
+            );
+
+            await context.SaveChangesAsync();
+        }
+
         if (!context.Collections.Any())
         {
             context.Collections.AddRange(
