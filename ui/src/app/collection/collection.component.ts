@@ -12,6 +12,7 @@ import { DialogWarningComponent } from '../dialog-warning/dialog-warning.compone
 export class CollectionComponent implements OnInit {
   collections!: Collection[];
   inputTitle: string = '';
+  shouldShowCollections!: boolean;
 
   constructor(
     private collectionService: CollectionService,
@@ -21,6 +22,7 @@ export class CollectionComponent implements OnInit {
   ngOnInit(): void {
     this.collectionService.getCollections().subscribe((data) => {
       this.collections = data;
+      this.shouldShowCollections = this.collections.length > 0;
     });
   }
 

@@ -14,7 +14,7 @@
     Add new collection
   </button>
 </div>
-<h1 *ngIf="collections.length === 0" class="errorMessage">
+<h1 *ngIf="!shouldShowCollections" class="errorMessage">
   There's no collection to show
 </h1>
 <div *ngIf="collections.length > 0" class="collections-container">

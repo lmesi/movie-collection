@@ -35,9 +35,7 @@
   </button>
 </form>
 <p *ngIf="!isYearValid" class="errorMessageYear">Year must be above 1900</p>
-<h1 *ngIf="medias.length === 0" class="errorMessage">
-  There's no media to show
-</h1>
+<h1 *ngIf="!shouldShowMedia" class="errorMessage">There's no media to show</h1>
 <div *ngIf="medias.length > 0" class="media-container">
   <div *ngFor="let media of medias" class="mediaCard">
     <a [routerLink]="['/' + type, media.id]">

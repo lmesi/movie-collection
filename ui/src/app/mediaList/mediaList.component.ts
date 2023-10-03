@@ -12,6 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class MediaListComponent implements OnInit {
   medias!: Media[];
   type!: string;
+  shouldShowMedia!: boolean;
   searchTitle: string = '';
   searchYear: number | undefined;
   maxYear = new Date().getFullYear() + 5;
@@ -33,11 +34,13 @@ export class MediaListComponent implements OnInit {
       this.mediaService.getMovies().subscribe((data) => {
         this.medias = data;
         this.type = 'movies';
+        this.shouldShowMedia = this.medias.length > 0;
       });
     } else if (url === '/series') {
       this.mediaService.getSeries().subscribe((data) => {
         this.medias = data;
         this.type = 'series';
+        this.shouldShowMedia = this.medias.length > 0;
       });
     }
   }
