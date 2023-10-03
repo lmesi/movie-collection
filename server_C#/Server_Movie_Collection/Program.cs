@@ -16,6 +16,25 @@ builder.Services.AddTransient<IDirectorService, DirectorService>();
 builder.Services.AddTransient<ISeriesService, SeriesService>();
 builder.Services.AddTransient<ICollectionService, CollectionService>();
 
+// Create the database and seed data
+using (var scope = builder.Services.BuildServiceProvider().CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    
+    // Initialize the database if needed (e.g., perform pending migrations)
+    var dbContext = serviceProvider.GetRequiredService<MediaCollectionContext>();
+    dbContext.Database.Migrate();
+
+    DatabaseInitializer.DirectorService = serviceProvider.GetRequiredService<IDirectorService>();
+    DatabaseInitializer.MovieService = serviceProvider.GetRequiredService<IMovieService>();
+    DatabaseInitializer.SeriesService = serviceProvider.GetRequiredService<ISeriesService>();
+    DatabaseInitializer.CollectionService = serviceProvider.GetRequiredService<ICollectionService>();
+
+    // Seed the data
+    DatabaseInitializer.SeedData(serviceProvider);
+}
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
