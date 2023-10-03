@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server_Movie_Collection", "Server_Movie_Collection\Server_Movie_Collection.csproj", "{F9F41E95-8ABE-4586-B203-C55BE49A373B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9F41E95-8ABE-4586-B203-C55BE49A373B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9F41E95-8ABE-4586-B203-C55BE49A373B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9F41E95-8ABE-4586-B203-C55BE49A373B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9F41E95-8ABE-4586-B203-C55BE49A373B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
