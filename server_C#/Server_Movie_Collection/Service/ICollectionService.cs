@@ -10,6 +10,6 @@ public interface ICollectionService
     Task<bool> AddCollection(MediaCollectionDto mediaCollectionDto);
     MediaCollection? GetCollectionById(long collectionId);
     Task<bool> DeleteCollection(long collectionId);
-    Task<bool> AddMediaToCollection(long collectionId, long mediaId, String mediaType);
+    Task<bool?> AddMediaToCollection(long collectionId, long mediaId, String mediaType);
     Task<bool> RemoveMediaFromCollection(long collectionId, long mediaId, String mediaType);
 }

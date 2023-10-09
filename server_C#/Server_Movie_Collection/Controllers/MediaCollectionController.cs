@@ -50,9 +50,11 @@ public class MediaCollectionController: ControllerBase
     public async Task<IActionResult> AddMediaToCollection(long id, [FromQuery] String type,
         [FromQuery(Name = "id")] int mediaId)
     {
-        bool success = await _collectionService.AddMediaToCollection(id, mediaId, type);
+        bool? success = await _collectionService.AddMediaToCollection(id, mediaId, type);
 
-        return success ? Ok() : BadRequest();
+        if (success is null) return BadRequest("ALREADY_ADDED");
+        
+        return success is true ? Ok() : BadRequest();
     }
     
     [HttpPut("{id}/remove")]

@@ -82,7 +82,7 @@ public class CollectionService : ICollectionService
         }
     }
 
-    public async Task<bool> AddMediaToCollection(long collectionId, long mediaId, string mediaType)
+    public async Task<bool?> AddMediaToCollection(long collectionId, long mediaId, string mediaType)
     {
         try
         {
@@ -94,6 +94,8 @@ public class CollectionService : ICollectionService
                 Movie? movie = _context.Movies.Include(media => media.Directors)
                     .FirstOrDefault(media => media.Id.Equals(mediaId));
                 if (movie is null) return false;
+
+                if (collection.Movies.Contains(movie)) return null;
                 
                 collection.Movies.Add(movie);
                 _context.Collections.Update(collection);
@@ -106,6 +108,8 @@ public class CollectionService : ICollectionService
                 Series? series = _context.Series.Include(media => media.Directors)
                     .FirstOrDefault(media => media.Id.Equals(mediaId));
                 if (series is null) return false;
+                
+                if (collection.Series.Contains(series)) return null;
                 
                 collection.Series.Add(series);
                 _context.Collections.Update(collection);
