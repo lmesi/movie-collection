@@ -1,9 +1,9 @@
-import { Media } from "../types";
+import { MediaType } from "../types";
 
 type IMediaListProps = {
   shouldShowMedias: boolean;
   mediaType: string;
-  medias: Media[];
+  medias: MediaType[];
 };
 
 const MediaList: React.FC<IMediaListProps> = ({

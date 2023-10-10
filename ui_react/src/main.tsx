@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.css";
 import Home from "./Pages/Home.tsx";
+import Movie, { MovieLodaer } from "./Pages/Movie.tsx";
+import Collections, { CollectionsLoader } from "./Pages/Collections.tsx";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +15,16 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "movies",
+        element: <Movie />,
+        loader: MovieLodaer,
+      },
+      {
+        path: "collections",
+        element: <Collections />,
+        loader: CollectionsLoader,
       },
     ],
   },
