@@ -48,6 +48,7 @@ const Media = () => {
         {medias.map((media) => (
           <Card
             key={media.id}
+            id={media.id}
             posterUrl={media.posterUrl}
             title={media.title}
             pathName={pathname}

@@ -13,6 +13,7 @@ const Collections = () => {
         {collections.map((collection) => (
           <Card
             key={collection.id}
+            id={collection.id}
             posterUrl={CardSvg}
             title={collection.title}
             pathName="/collections"
