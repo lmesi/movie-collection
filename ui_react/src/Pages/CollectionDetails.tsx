@@ -16,7 +16,7 @@ const CollectionDetails = () => {
       ) : (
         <MediaList
           shouldShowMedias={true}
-          mediaType="movie"
+          mediaType="movies"
           medias={collection.movies}
         />
       )}

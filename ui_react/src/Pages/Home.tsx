@@ -19,17 +19,17 @@ function Home() {
   return (
     <div>
       <MediaList
-        mediaType="collection"
+        mediaType="collections"
         shouldShowMedias={shouldShowCollections}
         medias={collections}
       />
       <MediaList
-        mediaType="movie"
+        mediaType="movies"
         shouldShowMedias={shouldShowMovies}
         medias={movies}
       />
       <MediaList
-        mediaType="tv show"
+        mediaType="series"
         shouldShowMedias={shouldShowSeries}
         medias={series}
       />
