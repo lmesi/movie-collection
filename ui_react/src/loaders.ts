@@ -1,10 +1,11 @@
-import { CollectionType, MovieType, SeriesType } from "./types";
-
-type HomeLoaderType = () => Promise<{
-  collections: CollectionType[];
-  movies: MovieType[];
-  series: SeriesType[];
-}>;
+import {
+  CollectionType,
+  MovieType,
+  SeriesType,
+  HomeLoaderType,
+  MovieDetailsLoaderType,
+  SeriesDetailsLoaderType,
+} from "./types";
 
 const homeLoader: HomeLoaderType = async () => {
   const collections = await (
@@ -25,12 +26,19 @@ const movieLodaer = async (): Promise<MovieType[]> => {
   return await (await fetch("/api/movies")).json();
 };
 
-const movieDetailsLoader = async (
+const movieDetailsLoader: MovieDetailsLoaderType = async (
   id: string | undefined
-): Promise<MovieType> => {
+) => {
   if (id) {
-    return await (await fetch(`/api/movies/${id}`)).json();
+    const collections = await (await fetch("/api/collections")).json();
+    const movie = await (await fetch(`/api/movies/${id}`)).json();
+
+    return {
+      collections,
+      movie,
+    };
   }
+
   return await new Promise(() => []);
 };
 
@@ -38,16 +46,22 @@ const seriesLoader = async (): Promise<SeriesType[]> => {
   return await (await fetch("/api/series")).json();
 };
 
-const seriesDetailsLoader = async (
+const seriesDetailsLoader: SeriesDetailsLoaderType = async (
   id: string | undefined
-): Promise<SeriesType> => {
+) => {
   if (id) {
-    return await (await fetch(`/api/series/${id}`)).json();
+    const collections = await (await fetch("/api/collections")).json();
+    const series = await (await fetch(`/api/series/${id}`)).json();
+
+    return {
+      collections,
+      series,
+    };
   }
   return new Promise(() => []);
 };
 
-const collectionsLoader = async (): Promise<CollectionType> => {
+const collectionsLoader = async (): Promise<CollectionType[]> => {
   return await (await fetch("/api/collections")).json();
 };
 

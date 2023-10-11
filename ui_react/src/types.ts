@@ -29,14 +29,25 @@ export type SeriesType = {
   watched: boolean;
 };
 
-export type CollectionBasicType = {
-  id: number;
-  title: string;
-};
-
 export type CollectionType = {
   id: number;
   title: string;
   movies: MovieType[];
   series: SeriesType[];
 };
+
+export type HomeLoaderType = () => Promise<{
+  collections: CollectionType[];
+  movies: MovieType[];
+  series: SeriesType[];
+}>;
+
+export type MovieDetailsLoaderType = (id: string | undefined) => Promise<{
+  collections: CollectionType[];
+  movie: MovieType;
+}>;
+
+export type SeriesDetailsLoaderType = (id: string | undefined) => Promise<{
+  collections: CollectionType[];
+  series: SeriesType;
+}>;

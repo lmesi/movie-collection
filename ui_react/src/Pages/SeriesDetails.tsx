@@ -1,8 +1,16 @@
-import { useLoaderData } from "react-router-dom";
-import { SeriesType } from "../types";
+import { useLoaderData, useParams } from "react-router-dom";
+import { CollectionType, SeriesType } from "../types";
+import Dropdown from "../Components/Dropdown";
+
+type loaderType = {
+  collections: CollectionType[];
+  series: SeriesType;
+};
 
 const SeriesDetails = () => {
-  const series = useLoaderData() as SeriesType;
+  const { collections, series } = useLoaderData() as loaderType;
+  const { id } = useParams();
+
   return (
     <div>
       <img src={series.posterUrl} alt="TV show poster" />
@@ -15,6 +23,7 @@ const SeriesDetails = () => {
         <p>
           Played between {series.startYear} - {series.endYear}
         </p>
+        <Dropdown collections={collections} mediaId={id} />
       </div>
     </div>
   );

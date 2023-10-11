@@ -1,8 +1,16 @@
-import { useLoaderData } from "react-router-dom";
-import { MovieType } from "../types";
+import { useLoaderData, useParams } from "react-router-dom";
+import { CollectionType, MovieType } from "../types";
+import Dropdown from "../Components/Dropdown";
+
+type loaderType = {
+  collections: CollectionType[];
+  movie: MovieType;
+};
 
 const MovieDetails = () => {
-  const movie = useLoaderData() as MovieType;
+  const { collections, movie } = useLoaderData() as loaderType;
+  const { id } = useParams();
+
   return (
     <div>
       <img src={movie.posterUrl} alt="movie poster" />
@@ -11,6 +19,7 @@ const MovieDetails = () => {
         <p>Director(s): {movie.directors.join(", ")}</p>
         <p>Play time: {movie.length}</p>
         <p>Released in {movie.year}</p>
+        <Dropdown collections={collections} mediaId={id} />
       </div>
     </div>
   );
