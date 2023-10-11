@@ -620,3 +620,4 @@ sketch
 #Other
 ui/src/assets/*
 ui_react/public/assets/*
+ui_react/assets/*
