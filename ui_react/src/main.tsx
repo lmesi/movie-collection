@@ -13,9 +13,11 @@ import {
   collectionsLoader,
   collectionDetailsLoader,
   movieDetailsLoader,
+  seriesDetailsLoader,
 } from "./loaders.ts";
 import CollectionDetails from "./Pages/CollectionDetails.tsx";
 import MovieDetails from "./Pages/MovieDetails.tsx";
+import SeriesDetails from "./Pages/SeriesDetails.tsx";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,13 @@ const router = createBrowserRouter([
         element: <MovieDetails />,
         loader: async ({ params }) => {
           return movieDetailsLoader(params.id);
+        },
+      },
+      {
+        path: "series/:id",
+        element: <SeriesDetails />,
+        loader: async ({ params }) => {
+          return seriesDetailsLoader(params.id);
         },
       },
       {
