@@ -25,9 +25,11 @@ const movieLodaer = async (): Promise<MovieType[]> => {
   return await (await fetch("/api/movies")).json();
 };
 
-const movieDetailsLoader = async (id: string): Promise<MovieType> => {
+const movieDetailsLoader = async (
+  id: string | undefined
+): Promise<MovieType> => {
   if (id) {
-    return await (await fetch(`/api/movies/:${id}`)).json();
+    return await (await fetch(`/api/movies/${id}`)).json();
   }
   return await new Promise(() => []);
 };
@@ -36,9 +38,11 @@ const seriesLoader = async (): Promise<SeriesType[]> => {
   return await (await fetch("/api/series")).json();
 };
 
-const seriesDetailsLoader = async (id: string): Promise<SeriesType> => {
+const seriesDetailsLoader = async (
+  id: string | undefined
+): Promise<SeriesType> => {
   if (id) {
-    return await (await fetch(`/api/series/:${id}`)).json();
+    return await (await fetch(`/api/series/${id}`)).json();
   }
   return new Promise(() => []);
 };
