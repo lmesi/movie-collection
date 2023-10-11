@@ -1,4 +1,5 @@
 import { MediaType } from "../types";
+import CardSvg from "../assets/checklist.svg";
 
 type IMediaListProps = {
   shouldShowMedias: boolean;
@@ -17,7 +18,7 @@ const MediaList: React.FC<IMediaListProps> = ({
       {shouldShowMedias && <h3>There's no {mediaType} to show</h3>}
       {medias.map((media) => (
         <a key={media.title}>
-          <img className="poster-img" src={media.posterUrl} />
+          <img className="poster-img" src={media.posterUrl ?? CardSvg} />
         </a>
       ))}
     </>

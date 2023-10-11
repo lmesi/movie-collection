@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import { CollectionType } from "../types";
 import Card from "../Components/Card";
-import CardSvg from "../../public/assets/checklist.svg";
+import CardSvg from "../assets/checklist.svg";
 
 const Collections = () => {
   const collections: CollectionType[] = useLoaderData() as CollectionType[];
@@ -22,9 +22,5 @@ const Collections = () => {
     </>
   );
 };
-
-export function CollectionsLoader(): Promise<CollectionType> {
-  return fetch("/api/collections").then((res) => res.json());
-}
 
 export default Collections;

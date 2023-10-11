@@ -1,34 +1,27 @@
 import { useState } from "react";
 import MediaList from "../Components/MediaList";
 import "./Home.css";
+import { useLoaderData } from "react-router-dom";
+import { CollectionType, MovieType, SeriesType } from "../types";
+
+type loaderType = {
+  collections: CollectionType[];
+  movies: MovieType[];
+  series: SeriesType[];
+};
 
 function Home() {
   const [shouldShowMovies] = useState(false);
   const [shouldShowSeries] = useState(false);
   const [shouldShowCollections] = useState(false);
-  const movies = [
-    {
-      id: 1,
-      title: "Shrek",
-      posterUrl: `../../public/assets/Shrek.jpg`,
-    },
-    {
-      id: 2,
-      title: "The Matrix",
-      posterUrl: "../../public/assets/The_Matrix.jpg",
-    },
-    {
-      id: 3,
-      title: "Fight Club",
-      posterUrl: "../../public/assets/Fight_Club.jpg",
-    },
-  ];
+  const { collections, movies, series } = useLoaderData() as loaderType;
+
   return (
     <div>
       <MediaList
         mediaType="collection"
         shouldShowMedias={shouldShowCollections}
-        medias={movies}
+        medias={collections}
       />
       <MediaList
         mediaType="movie"
@@ -38,7 +31,7 @@ function Home() {
       <MediaList
         mediaType="tv show"
         shouldShowMedias={shouldShowSeries}
-        medias={movies}
+        medias={series}
       />
     </div>
   );

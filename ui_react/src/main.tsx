@@ -4,8 +4,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.css";
 import Home from "./Pages/Home.tsx";
-import Movie, { MovieLodaer } from "./Pages/Movie.tsx";
-import Collections, { CollectionsLoader } from "./Pages/Collections.tsx";
+import Media from "./Pages/Media.tsx";
+import Collections from "./Pages/Collections.tsx";
+import {
+  homeLoader,
+  movieLodaer,
+  seriesLoader,
+  collectionsLoader,
+} from "./loaders.ts";
 
 const router = createBrowserRouter([
   {
@@ -15,16 +21,22 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: homeLoader,
       },
       {
         path: "movies",
-        element: <Movie />,
-        loader: MovieLodaer,
+        element: <Media />,
+        loader: movieLodaer,
+      },
+      {
+        path: "series",
+        element: <Media />,
+        loader: seriesLoader,
       },
       {
         path: "collections",
         element: <Collections />,
-        loader: CollectionsLoader,
+        loader: collectionsLoader,
       },
     ],
   },

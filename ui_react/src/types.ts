@@ -1,7 +1,7 @@
 export type MediaType = {
   id: number;
   title: string;
-  posterUrl: string;
+  posterUrl?: string;
 };
 
 export type MovieType = {

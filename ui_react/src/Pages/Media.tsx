@@ -1,16 +1,21 @@
 import { useLoaderData, useLocation } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 import Card from "../Components/Card";
-import { MovieType } from "../types";
-import "./Movie.css";
+import { MovieType, SeriesType } from "../types";
+import "./Media.css";
 
-const Movie = () => {
+type IValues = {
+  searchTitle?: string;
+  searchYear?: number;
+};
+
+const Media = () => {
   const { pathname } = useLocation();
-  const medias: MovieType[] = useLoaderData() as MovieType[];
+  const medias = useLoaderData() as MovieType[] | SeriesType[];
   const mediaType = pathname === "/series" ? "Series" : "Movies";
   const maxYear = new Date().getFullYear() + 5;
 
-  const onSubmit = (values) => {
+  const onSubmit = (values: IValues) => {
     console.log(values);
   };
 
@@ -53,8 +58,4 @@ const Movie = () => {
   );
 };
 
-export function MovieLodaer(): Promise<MovieType[]> {
-  return fetch("/api/movies").then((res) => res.json());
-}
-
-export default Movie;
+export default Media;
