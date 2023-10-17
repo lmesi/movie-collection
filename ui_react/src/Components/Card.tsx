@@ -10,12 +10,12 @@ type ICardProps = {
 
 const Card: React.FC<ICardProps> = ({ posterUrl, title, pathName, id }) => {
   return (
-    <>
+    <div className="card-container">
       <Link to={`${pathName}/${id}`}>
         <img src={posterUrl} alt="media poster" />
         <h4>{title}</h4>
       </Link>
-    </>
+    </div>
   );
 };
 

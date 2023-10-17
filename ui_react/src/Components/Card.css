@@ -1,3 +1,8 @@
+.card-container {
+  margin: 20px;
+  text-align: center;
+}
+
 img {
   height: 250px;
 }
