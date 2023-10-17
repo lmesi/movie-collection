@@ -1,3 +1,14 @@
+.content-container {
+  margin: 4vh 2vw;
+  padding-bottom: 4vh;
+}
+
 .poster-img {
   height: 250px;
+}
+
+.home-collection-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
