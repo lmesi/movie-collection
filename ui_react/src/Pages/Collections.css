@@ -1,0 +1,16 @@
+.collections-container {
+  margin: 0 2vw;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 4vh;
+}
+
+#addBtn {
+  margin-left: 25px;
+}

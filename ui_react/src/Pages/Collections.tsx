@@ -4,6 +4,7 @@ import Card from "../Components/Card";
 import CardSvg from "../assets/checklist.svg";
 import { TextField, Button } from "@mui/material";
 import { ChangeEventHandler, useState } from "react";
+import "./Collections.css";
 
 const Collections = () => {
   const collections: CollectionType[] = useLoaderData() as CollectionType[];
@@ -34,17 +35,23 @@ const Collections = () => {
   };
 
   return (
-    <>
+    <div className="collections-container">
       <h1>Collections</h1>
-      <TextField
-        label="Collection name"
-        variant="outlined"
-        value={collectionTitle}
-        onChange={handleChange}
-        error={!isTitleValid}
-        helperText={isTitleValid ? undefined : "Incorrect entry."}
-      />
-      <Button onClick={handleAddition}>Add new collection</Button>
+      <div className="input-container">
+        <TextField
+          label="Collection name"
+          variant="outlined"
+          value={collectionTitle}
+          onChange={handleChange}
+          error={!isTitleValid}
+          helperText={
+            isTitleValid ? undefined : "Title should be at least 5 character."
+          }
+        />
+        <Button id="addBtn" variant="outlined" onClick={handleAddition}>
+          Add new collection
+        </Button>
+      </div>
       <div className="cards_container">
         {collections.map((collection) => (
           <Card
@@ -56,7 +63,7 @@ const Collections = () => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
