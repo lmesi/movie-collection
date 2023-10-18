@@ -42,6 +42,20 @@ const router = createBrowserRouter([
       {
         path: "collections",
         element: <Collections />,
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          const collectionTitle = formData.get("collectionName");
+
+          await fetch("/api/collections", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              title: collectionTitle,
+            }),
+          });
+
+          return null;
+        },
         loader: collectionsLoader,
       },
       {
