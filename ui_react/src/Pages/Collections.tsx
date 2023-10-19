@@ -23,7 +23,12 @@ const Collections = () => {
   return (
     <div className="collections-container">
       <h1>Collections</h1>
-      <Form className="input-container" method="post" action="/collections">
+      <Form
+        className="input-container"
+        method="post"
+        action="/collections"
+        onSubmit={() => setCollectionTitle("")}
+      >
         <TextField
           name="collectionName"
           label="Collection name"
@@ -35,7 +40,13 @@ const Collections = () => {
             isTitleValid ? undefined : "Title should be at least 5 character."
           }
         />
-        <Button id="addBtn" variant="outlined" type="submit">
+        <Button
+          id="addBtn"
+          variant="outlined"
+          type="submit"
+          name="intent"
+          value="add"
+        >
           Add new collection
         </Button>
       </Form>

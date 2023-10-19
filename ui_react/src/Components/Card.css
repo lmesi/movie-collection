@@ -1,6 +1,13 @@
 .card-container {
+  position: relative;
   margin: 20px;
   text-align: center;
+}
+
+#deleteBtn {
+  position: absolute;
+  right: 7px;
+  top: -7px;
 }
 
 img {

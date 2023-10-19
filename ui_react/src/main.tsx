@@ -44,17 +44,32 @@ const router = createBrowserRouter([
         element: <Collections />,
         action: async ({ request }) => {
           const formData = await request.formData();
-          const collectionTitle = formData.get("collectionName");
+          const intent = formData.get("intent");
 
-          await fetch("/api/collections", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              title: collectionTitle,
-            }),
-          });
+          if (intent === "add") {
+            const collectionTitle = formData.get("collectionName");
 
-          return null;
+            await fetch("/api/collections", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                title: collectionTitle,
+              }),
+            });
+
+            return null;
+          }
+
+          if (intent === "delete") {
+            const id = formData.get("id");
+
+            await fetch(`/api/collections/${id}`, {
+              method: "DELETE",
+              headers: { "Content-Type": "application/json" },
+            });
+
+            return null;
+          }
         },
         loader: collectionsLoader,
       },
