@@ -56,7 +56,21 @@ const movieDetailsLoader: MovieDetailsLoaderType = async (
   return await new Promise(() => []);
 };
 
-const seriesLoader = async (): Promise<SeriesType[]> => {
+const seriesLoader = async ({
+  request,
+}: {
+  request: Request;
+}): Promise<SeriesType[]> => {
+  const { searchParams } = new URL(request.url);
+  const searchYear = searchParams.get("year");
+  const searchTitle = searchParams.get("title");
+
+  if ((searchYear && searchYear !== "0") || searchTitle) {
+    return await (
+      await fetch(`/api/series/search?${searchParams.toString()}`)
+    ).json();
+  }
+
   return await (await fetch("/api/series")).json();
 };
 
