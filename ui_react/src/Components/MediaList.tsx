@@ -1,28 +1,34 @@
 import { MediaType } from "../types";
 import CardSvg from "../assets/checklist.svg";
-import { Link } from "react-router-dom";
+import Card from "./Card";
 import "./MediaList.css";
 
 type IMediaListProps = {
   shouldShowMedias: boolean;
   mediaType: string;
   medias: MediaType[];
+  shouldShowTitle?: boolean;
 };
 
 const MediaList: React.FC<IMediaListProps> = ({
   shouldShowMedias,
   mediaType,
   medias,
+  shouldShowTitle = false,
 }) => {
   return (
     <>
       <h2>{mediaType.charAt(0).toUpperCase() + mediaType.slice(1)}</h2>
-      {shouldShowMedias && <h3>There's no {mediaType} to show</h3>}
+      {!shouldShowMedias && <h3>There's no {mediaType} to show</h3>}
       <div className="list-container">
         {medias.map((media) => (
-          <Link to={`/${mediaType}/${media.id}`} key={media.title}>
-            <img className="poster-img" src={media.posterUrl ?? CardSvg} />
-          </Link>
+          <Card
+            key={media.id}
+            id={media.id}
+            posterUrl={media.posterUrl ?? CardSvg}
+            pathName={`/${mediaType}/${media.id}`}
+            title={shouldShowTitle ? media.title : undefined}
+          />
         ))}
       </div>
     </>
@@ -30,3 +36,7 @@ const MediaList: React.FC<IMediaListProps> = ({
 };
 
 export default MediaList;
+
+/* <Link to={`/${mediaType}/${media.id}`} key={media.title}>
+            <img className="poster-img" src={media.posterUrl ?? CardSvg} />
+          </Link> */
