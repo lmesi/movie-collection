@@ -1,4 +1,4 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useSubmit } from "react-router-dom";
 import { CollectionType } from "../types";
 import Card from "../Components/Card";
 import CardSvg from "../assets/checklist.svg";
@@ -10,6 +10,17 @@ const Collections = () => {
   const collections: CollectionType[] = useLoaderData() as CollectionType[];
   const [collectionTitle, setCollectionTitle] = useState("");
   const [isTitleValid, setIsTitleValid] = useState(true);
+  const submit = useSubmit();
+
+  const handleDelete = (id: number) => {
+    submit(
+      { intent: "delete", id },
+      {
+        method: "DELETE",
+        action: "/collections",
+      }
+    );
+  };
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (event.target.value.length > 4) {
@@ -58,6 +69,7 @@ const Collections = () => {
             posterUrl={CardSvg}
             title={collection.title}
             pathName="/collections"
+            onDelete={() => handleDelete(collection.id)}
           />
         ))}
       </div>
