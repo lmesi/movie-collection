@@ -19,7 +19,7 @@ const MovieDetails = () => {
         <p>Director(s): {movie.directors.join(", ")}</p>
         <p>Play time: {movie.length}</p>
         <p>Released in {movie.year}</p>
-        <Dropdown collections={collections} mediaId={id} />
+        <Dropdown collections={collections} mediaId={id} mediaType="movie" />
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ const SeriesDetails = () => {
         <p>
           Played between {series.startYear} - {series.endYear}
         </p>
-        <Dropdown collections={collections} mediaId={id} />
+        <Dropdown collections={collections} mediaId={id} mediaType="series" />
       </div>
     </div>
   );

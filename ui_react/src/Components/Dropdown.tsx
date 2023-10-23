@@ -10,9 +10,14 @@ import { CollectionType } from "../types";
 type IDropdownProps = {
   collections: CollectionType[];
   mediaId: string | undefined;
+  mediaType: string;
 };
 
-const Dropdown: React.FC<IDropdownProps> = ({ collections, mediaId }) => {
+const Dropdown: React.FC<IDropdownProps> = ({
+  collections,
+  mediaId,
+  mediaType,
+}) => {
   const [selectedCollectionId, setSelectedCollectionId] = useState("");
   const navigate = useNavigate();
 
@@ -23,7 +28,7 @@ const Dropdown: React.FC<IDropdownProps> = ({ collections, mediaId }) => {
   const handleAddition = () => {
     if (selectedCollectionId === "") return;
     fetch(
-      `/api/collections/${selectedCollectionId}/add?type=series&id=${mediaId}`,
+      `/api/collections/${selectedCollectionId}/add?type=${mediaType}&id=${mediaId}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
