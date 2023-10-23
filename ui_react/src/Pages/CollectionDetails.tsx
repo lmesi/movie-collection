@@ -1,6 +1,7 @@
 import { useLoaderData, useParams, useSubmit } from "react-router-dom";
 import { CollectionType } from "../types";
 import MediaList from "../Components/MediaList";
+import "./CollectionDetails.css";
 
 const CollectionDetails = () => {
   const collection = useLoaderData() as CollectionType;
@@ -23,11 +24,10 @@ const CollectionDetails = () => {
       {collection.movies.length === 0 ? (
         <>
           <h2>Movies</h2>
-          <h2>No movies in collection to show</h2>
+          <h3>No movies in collection to show</h3>
         </>
       ) : (
         <MediaList
-          shouldShowMedias={true}
           mediaType="movies"
           medias={collection.movies}
           onDelete={handleDelete}
@@ -36,11 +36,10 @@ const CollectionDetails = () => {
       {collection.series.length === 0 ? (
         <>
           <h2>Series</h2>
-          <h2>No series in collection to show</h2>
+          <h3>No series in collection to show</h3>
         </>
       ) : (
         <MediaList
-          shouldShowMedias={true}
           mediaType="series"
           medias={collection.series}
           onDelete={handleDelete}
