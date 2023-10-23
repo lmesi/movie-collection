@@ -8,6 +8,7 @@ type IMediaListProps = {
   mediaType: string;
   medias: MediaType[];
   shouldShowTitle?: boolean;
+  onDelete?: (id: number, type: string) => void;
 };
 
 const MediaList: React.FC<IMediaListProps> = ({
@@ -15,6 +16,7 @@ const MediaList: React.FC<IMediaListProps> = ({
   mediaType,
   medias,
   shouldShowTitle = false,
+  onDelete,
 }) => {
   return (
     <>
@@ -28,6 +30,15 @@ const MediaList: React.FC<IMediaListProps> = ({
             posterUrl={media.posterUrl ?? CardSvg}
             pathName={`/${mediaType}/${media.id}`}
             title={shouldShowTitle ? media.title : undefined}
+            onDelete={
+              onDelete
+                ? () =>
+                    onDelete(
+                      media.id,
+                      mediaType === "movies" ? "movie" : mediaType
+                    )
+                : undefined
+            }
           />
         ))}
       </div>

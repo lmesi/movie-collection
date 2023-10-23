@@ -90,6 +90,21 @@ const router = createBrowserRouter([
       {
         path: "collections/:id",
         element: <CollectionDetails />,
+        action: async ({ params, request }) => {
+          const formData = await request.formData();
+          const mediaId = formData.get("mediaId");
+          const type = formData.get("type");
+
+          await fetch(
+            `/api/collections/${params.id}/remove?type=${type}&id=${mediaId}`,
+            {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+
+          return null;
+        },
         loader: async ({ params }) => {
           return collectionDetailsLoader(params.id);
         },
