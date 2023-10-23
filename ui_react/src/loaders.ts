@@ -22,7 +22,21 @@ const homeLoader: HomeLoaderType = async () => {
   };
 };
 
-const movieLodaer = async (): Promise<MovieType[]> => {
+const movieLodaer = async ({
+  request,
+}: {
+  request: Request;
+}): Promise<MovieType[]> => {
+  const { searchParams } = new URL(request.url);
+  const searchYear = searchParams.get("year");
+  const searchTitle = searchParams.get("title");
+
+  if ((searchYear && searchYear !== "0") || searchTitle) {
+    return await (
+      await fetch(`/api/movies/search?${searchParams.toString()}`)
+    ).json();
+  }
+
   return await (await fetch("/api/movies")).json();
 };
 

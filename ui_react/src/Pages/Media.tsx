@@ -1,4 +1,4 @@
-import { useLoaderData, useLocation } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 import Card from "../Components/Card";
 import { MovieType, SeriesType } from "../types";
@@ -13,11 +13,14 @@ type IValues = {
 const Media = () => {
   const { pathname } = useLocation();
   const medias = useLoaderData() as MovieType[] | SeriesType[];
+  const navigate = useNavigate();
   const mediaType = pathname === "/series" ? "Series" : "Movies";
   const maxYear = new Date().getFullYear() + 5;
 
   const onSubmit = (values: IValues) => {
-    console.log(values);
+    navigate(
+      `?title=${values.searchTitle ?? ""}&year=${values.searchYear ?? 0}`
+    );
   };
 
   return (
